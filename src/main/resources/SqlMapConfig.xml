@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--根标签-->
+<configuration>
+    <!--environments 表示配置多个环境信息 default表示默认的环境
+    dev 开发环境 pro生产环境 test测试环境
+    使用哪一个就修改默认的就行-->
+    <environments default="dev">
+        <environment id="dev">
+            <transactionManager type="JDBC"></transactionManager>
+            <!--
+                dataSource表示数据源，1. POOLED表示使用自带连接池  2. UNPOOLED表示不使用连接池  3. JNDI表示使用JNDI的连接池
+            -->
+            <dataSource type="POOLED">
+                <!--配置连接信息-->
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis_day?characterEncoding=utf-8"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--
+        指定加载哪些映射配置文件: mappers
+            mapper标签: 每一个mapper标签负责加载一个映射配置文件;resource指定要加载的映射配置文件的路径
+    -->
+    <mappers>
+        <mapper resource="com/itheima/dao/UserDao.xml"></mapper>
+    </mappers>
+
+</configuration>
